@@ -1,0 +1,22 @@
+V5.2 hotfix
+
+Fixes the web dashboard column shift introduced after adding Rebate Qualified Qty.
+
+Correct table order:
+PLU
+Description
+Size
+Scan Program
+Rebate
+Start
+End
+Units Req.
+Qty Sold
+Rebate Qualified
+Item Price
+Sales Total
+Qualifying Rebates
+Rebate Due
+Actions
+
+No database migration is required if V5/V5.1 migration was already run.

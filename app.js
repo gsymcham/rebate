@@ -16,7 +16,23 @@ $("newPeriod").onclick=()=>{$("periodName").value="";$("periodStart").value="";$
 $("savePeriod").onclick=async e=>{e.preventDefault();let p={user_id:session.user.id,name:$("periodName").value.trim(),start_date:$("periodStart").value,end_date:$("periodEnd").value};if(!p.name||!p.start_date||!p.end_date)return alert("Complete all fields");let {error}=await S.from("rebate_periods").insert(p);if(error)return alert(error.message);$("periodDlg").close();await loadPeriods()}
 
 async function loadPrograms(){let {data,error}=await S.from("rebate_programs").select("*").eq("period_id",pid).order("plu");if(error)return alert(error.message);programs=data||[];renderPrograms()}
-function renderPrograms(){let tq=0,ts=0,tr=0;$("body").innerHTML=programs.map(p=>{let c=calc(p);tq+=+p.qty_sold||0;ts+=c.sales;tr+=c.due;return `<tr><td>${esc(p.plu)}</td><td>${esc(p.description)}</td><td>${esc(p.size_pack)}</td><td>${esc(p.scan_program)}</td><td>${money(p.rebate_amount)}</td><td>${p.start_date}</td><td>${p.end_date}</td><td>${p.units_required}</td><td>${p.qty_sold}</td><td>${p.rebate_qualified||0}</td><td>${money(p.item_price)}</td><td>${money(c.sales)}</td><td>${c.qual}</td><td><b>${money(c.due)}</b></td><td><button class="ghost" onclick="editProgram('${p.id}')">Edit</button> <button class="danger" onclick="deleteProgram('${p.id}')">Delete</button></td></tr>`}).join("");$("sPrograms").textContent=programs.length;$("sQty").textContent=tq;$("sSales").textContent=money(ts);$("sRebate").textContent=money(tr)}
+function renderPrograms(){let tq=0,ts=0,tr=0;$("body").innerHTML=programs.map(p=>{let c=calc(p);tq+=+p.qty_sold||0;ts+=c.sales;tr+=c.due;return `<tr>
+<td>${esc(p.plu)}</td>
+<td>${esc(p.description)}</td>
+<td>${esc(p.size_pack)}</td>
+<td>${esc(p.scan_program)}</td>
+<td>${money(p.rebate_amount)}</td>
+<td>${p.start_date}</td>
+<td>${p.end_date}</td>
+<td>${p.units_required}</td>
+<td>${p.qty_sold}</td>
+<td>${p.rebate_qualified ?? 0}</td>
+<td>${money(p.item_price)}</td>
+<td>${money(c.sales)}</td>
+<td>${c.qual}</td>
+<td><b>${money(c.due)}</b></td>
+<td><button class="ghost" onclick="editProgram('${p.id}')">Edit</button> <button class="danger" onclick="deleteProgram('${p.id}')">Delete</button></td>
+</tr>`}).join("");$("sPrograms").textContent=programs.length;$("sQty").textContent=tq;$("sSales").textContent=money(ts);$("sRebate").textContent=money(tr)}
 
 $("newProgram").onclick=()=>{if(!pid)return alert("Create a rebate period first");$("programTitle").textContent="Add rebate program";$("programId").value="";["plu","desc","size","scan","notes"].forEach(x=>$(x).value="");$("rebate").value=0;$("units").value=1;$("qty").value=0;$("rebateQualified").value=0;$("price").value=0;let p=periods.find(x=>x.id===pid);$("start").value=p.start_date;$("end").value=p.end_date;$("programDlg").showModal()}
 window.editProgram=id=>{let p=programs.find(x=>x.id===id);$("programTitle").textContent="Edit rebate program";$("programId").value=p.id;$("plu").value=p.plu;$("desc").value=p.description;$("size").value=p.size_pack||"";$("scan").value=p.scan_program||"";$("rebate").value=p.rebate_amount;$("start").value=p.start_date;$("end").value=p.end_date;$("units").value=p.units_required;$("qty").value=p.qty_sold;$("rebateQualified").value=p.rebate_qualified||0;$("price").value=p.item_price;$("notes").value=p.notes||"";$("programDlg").showModal()}

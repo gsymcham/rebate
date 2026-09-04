@@ -1,0 +1,11 @@
+Excel wording updates applied. Missing patterns (if any) were likely already updated in prior versions:
+ws.mergeCells("A8:D8"); ws.getCell("A8").value="REBATE SUMMARY";
+["Total Qualifying Rebates",totals.qual],
+["TOTAL REBATE DUE FROM SUPPLIER",totals.due]
+"Rebate Amount","Start Date","End Date","Qty Sold","Rebate Qualified","Sales Total","Qualifying Rebates","Total Rebate Due"
+["Rebate Amount",+p.rebate_amount],
+ws.mergeCells("A19:C19");ws.getCell("A19").value="SALES & REBATE SUMMARY";
+["Units Required per Rebate",+p.units_required]
+["Qualifying Rebates Earned",c.qual]
+["Rebate Amount per Qualifying Purchase",+p.rebate_amount]
+["TOTAL REBATE DUE",c.due]

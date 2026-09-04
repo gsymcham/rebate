@@ -77,3 +77,25 @@ Individual PLU sheets:
 - `TOTAL REBATE DUE` -> `TOTAL REDEMPTION DUE`
 
 The web app field names remain unchanged; these wording changes apply to Excel export presentation.
+
+
+## V5.3 Excel wording correction
+Excel export wording is now updated across all sheets:
+
+Summary sheet:
+- SUMMARY
+- TOTAL QUALIFYING REDEMPTION
+- TOTAL DUE
+- Redemption Amt
+- Qualifying Redemption
+- Total Due
+
+Individual PLU sheets:
+- Redemption Amount
+- SALES & REDEMPTION SUMMARY
+- Units Required per Redemption
+- Qualifying Redemption Earned
+- Redemption Amount per Qualifying Purchase
+- TOTAL REDEMPTION DUE
+
+This V5.3 also retains the V5.2 web-table alignment hotfix.
