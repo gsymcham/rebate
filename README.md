@@ -45,3 +45,35 @@ Note: Excel worksheet names have a 31-character limit, so long product descripti
 - Added visible field labels to New Period.
 - Individual Excel tabs now use `PLU_MonthYear`, e.g. `64545_Jun2026`.
 - Removed Unmatched Units from individual PLU sheet rebate summaries.
+
+## V5 - Rebate Qualified Qty
+- Qty Sold tracks total units sold.
+- Rebate Qualified Qty tracks only units eligible for supplier rebate.
+- Sales Total = Qty Sold × Item Price.
+- Qualifying Rebates = floor(Rebate Qualified Qty ÷ Units Required).
+- Rebate Due = Qualifying Rebates × Rebate Amount.
+- Rebate Qualified Qty cannot exceed Qty Sold.
+- Run `v5_migration.sql` once on an existing Supabase database.
+
+
+## V5.1 Excel terminology changes
+
+Excel export wording updated across the workbook:
+
+Summary sheet:
+- `REBATE SUMMARY` -> `SUMMARY`
+- `Total Qualifying Rebates` -> `TOTAL QUALIFYING REDEMPTION`
+- `TOTAL REBATE DUE FROM SUPPLIER` -> `TOTAL DUE`
+- `Rebate Amount` -> `Redemption Amt`
+- `Qualifying Rebates` -> `Qualifying Redemption`
+- `Total Rebate Due` -> `Total Due`
+
+Individual PLU sheets:
+- `Rebate Amount` -> `Redemption Amount`
+- `SALES & REBATE SUMMARY` -> `SALES & REDEMPTION SUMMARY`
+- `Units Required per Rebate` -> `Units Required per Redemption`
+- `Qualifying Rebates Earned` -> `Qualifying Redemption Earned`
+- `Rebate Amount per Qualifying Purchase` -> `Redemption Amount per Qualifying Purchase`
+- `TOTAL REBATE DUE` -> `TOTAL REDEMPTION DUE`
+
+The web app field names remain unchanged; these wording changes apply to Excel export presentation.

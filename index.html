@@ -45,8 +45,8 @@
       <div class="tablewrap"><table>
         <thead><tr>
           <th>PLU</th><th>Description</th><th>Size</th><th>Scan Program</th><th>Rebate</th>
-          <th>Start</th><th>End</th><th>Units Req.</th><th>Qty Sold</th><th>Item Price</th>
-          <th>Sales Total</th><th>Qualifying</th><th>Unmatched</th><th>Rebate Due</th><th></th>
+          <th>Start</th><th>End</th><th>Units Req.</th><th>Qty Sold</th><th>Rebate Qualified</th><th>Item Price</th>
+          <th>Sales Total</th><th>Qualifying Rebates</th><th>Rebate Due</th><th></th>
         </tr></thead>
         <tbody id="body"></tbody>
       </table></div>
@@ -100,6 +100,9 @@
     </label>
     <label>Qty Sold
       <input id="qty" type="number" min="0" value="0">
+    </label>
+    <label>Rebate Qualified Qty
+      <input id="rebateQualified" type="number" min="0" value="0">
     </label>
     <label>Item Price ($)
       <input id="price" type="number" step="0.01" min="0" value="0">

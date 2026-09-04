@@ -22,6 +22,7 @@ create table if not exists public.rebate_programs (
   end_date date not null,
   units_required integer not null default 1 check (units_required > 0),
   qty_sold integer not null default 0 check (qty_sold >= 0),
+  rebate_qualified integer not null default 0 check (rebate_qualified >= 0),
   item_price numeric(10,2) not null default 0 check (item_price >= 0),
   notes text,
   created_at timestamptz not null default now(),
